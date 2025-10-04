@@ -1,0 +1,9 @@
+a = 4
+a += 2 # incrementamos el valor de "a" en 2
+print('a:', a) # a=6
+a -= 3 # decrementamos el valor de "a" en 3
+print('a:', a) # a=3
+a *=4 # multiplicamos el valor de "a" por 4
+print('a:', a) # a=12
+a /= 3  # dividimos el valor de "a" entre 3
+print('a:', a) # a=4
