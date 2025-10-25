@@ -1,4 +1,4 @@
-# Encapsular es proteger los datos y controlar cómo se accede a o modifica
+# Encapsular es proteger los datos y controlar cómo se accede o se modifica
 # la información dentro de un objeto
 
 # Ejemplo sin encapsulamiento
