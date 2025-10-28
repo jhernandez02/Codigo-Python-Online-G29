@@ -1,0 +1,43 @@
+/*
+    Diseñar una base de datos para eventos (conciertos)
+    Debes registrar la fecha hora, precio de las entradas y el lugar
+    Un evento puede tener varios grupos, y un grupo puede estar en varios eventos.
+    Un grupo pertence a un género musical.
+*/
+
+Table eventos {
+  id integer [primary key, increment]
+  fecha date
+  hora time
+  lugar varchar
+}
+
+Table entradas {
+  id integer [primary key, increment]
+  zona varchar
+  precio decimal(7,2)
+  evento_id integer [not null]
+}
+
+Table generos {
+  id integer [primary key, increment]
+  nombre varchar
+}
+
+Table grupos {
+  id integer [primary key, increment]
+  nombre varchar
+  genero_id integer [not null]
+}
+
+Table evento_grupos {
+  evento_id integer [not null]
+  grupo_id integer [not null]
+}
+
+// Relación: uno a muchos
+Ref: entradas.evento_id > eventos.id
+Ref: grupos.genero_id > generos.id
+// Relación: muchos a muchos
+Ref: evento_grupos.evento_id > eventos.id
+Ref: evento_grupos.grupo_id > grupos.id

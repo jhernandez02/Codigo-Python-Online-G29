@@ -1,0 +1,40 @@
+/*
+    Crear una base de datos para una academia de cursos.
+    Un instructor puede dictar más de un curso.
+    Una categoría tiene muchos cursos, un curso pertence a un sola categoría.
+    Un horario puede pertener a varios cursos, pero un curso solo tiene un horario.
+*/
+
+Table categorias {
+  id integer [primary key, increment]
+  nombre varchar
+}
+
+Table instructores {
+  id integer [primary key, increment]
+  nombres varchar
+  apellidos varchar
+}
+
+Table horarios {
+  id integer [primary key, increment]
+  nombre varchar
+  descripcion varchar
+}
+
+Table cursos {
+  id integer [primary key, increment]
+  codigo char(8)
+  nombre varchar(150)
+  descripcion text
+  temario text
+  precio decimal(7,2) // 99999.99
+  horas integer
+  categoria_id integer [not null]
+  horario_id integer [not null]
+  instructor_id integer [not null]
+}
+
+Ref: cursos.categoria_id > categorias.id
+Ref: cursos.horario_id > horarios.id
+Ref: cursos.instructor_id > instructores.id

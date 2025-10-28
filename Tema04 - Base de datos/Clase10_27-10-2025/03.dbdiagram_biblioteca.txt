@@ -1,0 +1,38 @@
+Table paises {
+  id integer [primary key, increment]
+  nombre varchar
+}
+
+Table autores {
+  id integer [primary key, increment]
+  nombres varchar
+  apellidos varchar
+  fecha_nac date
+  pais_id integer [not null]
+}
+
+Table generos {
+  id integer [primary key, increment]
+  nombre varchar
+}
+
+Table editoriales {
+  id integer [primary key, increment]
+  nombre varchar
+}
+
+Table libros {
+  id integer [primary key, increment]
+  isbn varchar
+  titulo varchar
+  resumen text
+  anio year
+  editorial_id integer [not null]
+  genero_id integer [not null]
+  autor_id integer [not null]
+}
+
+Ref: autores.pais_id > paises.id
+Ref: libros.editorial_id > editoriales.id
+Ref: libros.genero_id > generos.id
+Ref: libros.autor_id > autores.id
