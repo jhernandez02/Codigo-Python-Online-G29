@@ -1,7 +1,7 @@
 # Crear una aplicacion para el registro de una cuenta bancaria.
 # Crear una clase Cuenta, que solicite un monto inicial
-# La clase cuenta, permite ingresar, retirar un monto
-# Crear la clase Cliente, que extiende de la clase Cuenta
+# La clase Cuenta, permite depositar y retirar un monto
+# Crear la clase Cliente que extiende de la clase Cuenta
 # La clase Cliente permite mostrar el saldo de la cuenta
 
 class Cuenta:

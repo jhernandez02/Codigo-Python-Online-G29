@@ -22,7 +22,7 @@ class Auto(Vehiculos):
         self.placa = placa
     def avanzar(self):
         if self.encendido:
-            print("Avanzando por la pista")
+            print("Avanzando por la carretera")
 
 # La clase Barco hereda de Vehiculos
 class Barco(Vehiculos):
