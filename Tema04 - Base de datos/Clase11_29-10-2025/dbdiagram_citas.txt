@@ -1,0 +1,26 @@
+Table doctores {
+  id integer [primary key, increment]
+  nombre varchar(150)
+  especialidad varchar(150)
+  fecha_registro timestamp
+}
+
+Table pacientes {
+  id integer [primary key, increment]
+  nombre varchar(150)
+  correo varchar(150)
+  telefono varchar(150)
+  fecha_registro timestamp
+}
+
+Table citas {
+  doctor_id integer [not null]
+  paciente_id integer [not null]
+  fecha_cita datetime
+  estado varchar(1)
+  fecha_registro timestamp
+}
+
+// Relación: muchos a muchos
+Ref: citas.doctor_id > doctores.id
+Ref: citas.paciente_id > pacientes.id
