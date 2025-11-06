@@ -1,0 +1,61 @@
+# Virtualenv
+venv/
+.venv/
+.env/
+
+# Python
+*.pyc
+*.pyo
+__pycache__/
+*.db
+*.sqlite3
+
+# Archivos de migraciones
+*/migrations/*
+!*/migrations/__init__.py
+
+# Archivos de configuración locales
+*.env
+*.ini
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.bak
+*.swp
+*~
+.DS_Store
+config.json
+
+# Archivos de configuración de editor
+.vscode/
+.idea/
+
+# Archivos de pruebas
+*.coverage
+nosetests.xml
+coverage.xml
+*.cover
+
+# Archivos de log
+*.log
+
+# Archivos temporales de macOS
+*.swp
+.DS_Store
+
+# Archivos generados por Build de React y Node.js
+node_modules/
+build/
+dist/
+.cache/
+
+# Otros Archivos
+*.zip
+*.mwb
+*.drawio
+*.sql
+*.pptx
+*.docx
