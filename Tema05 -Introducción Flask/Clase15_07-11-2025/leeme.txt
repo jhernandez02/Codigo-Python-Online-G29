@@ -1,0 +1,14 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar las dependencias
+pip install -r requirements.txt
+
+# Verificar la instalación de dependencias
+pip freeze
+
+# Levantar el servidor de desarrollo
+flask --app app run --debug

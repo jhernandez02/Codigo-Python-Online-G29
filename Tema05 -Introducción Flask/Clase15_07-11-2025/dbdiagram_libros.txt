@@ -1,0 +1,38 @@
+Table generos {
+  id integer [primary key, increment]
+  nombre varchar(150)
+  fecha_registro timestamp
+}
+
+Table editorial {
+  id integer [primary key, increment]
+  nombre varchar(150)
+  direccion varchar(150)
+  fecha_registro timestamp
+}
+
+Table autores {
+  id integer [primary key, increment]
+  nombres varchar(150)
+  nacionalidad varchar(150)
+  fecha_nacimiento timestamp
+  fecha_registro timestamp
+}
+
+Table libros {
+  id integer [primary key, increment]
+  genero_id integer
+  autor_id integer
+  editorial_id integer
+  isbn varchar(20)
+  titulo varchar(150)
+  autor varchar(150)
+  editorial varchar(150)
+  anio date
+  fecha_registro timestamp
+}
+
+// Relación: uno a muchos
+Ref: libros.genero_id > generos.id
+Ref: libros.autor_id > autores.id
+Ref: libros.editorial_id > editorial.id
