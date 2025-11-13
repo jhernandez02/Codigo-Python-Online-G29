@@ -1,0 +1,27 @@
+# Creación el proyecto
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+
+
+# Migraciones de la BD
+flask db init
+flask db migrate -m "Initial migration."
+flask db upgrade
+
+-- Cambios en la base de datos:
+flask db migrate -m "Descripcion del cambio"
+flask db upgrade
+
+
+
+
+
+
+
+
+
+
+
+# Levantar el servidor de desarrollo
+flask --app app run --debug
