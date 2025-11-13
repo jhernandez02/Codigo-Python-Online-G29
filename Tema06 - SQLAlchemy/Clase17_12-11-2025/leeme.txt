@@ -1,0 +1,7 @@
+# Creación del entorno virtual del proyecto
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+
+# Levantar el servidor de desarrollo
+flask --app app run --debug
