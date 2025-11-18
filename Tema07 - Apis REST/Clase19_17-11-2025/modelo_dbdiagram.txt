@@ -1,0 +1,49 @@
+Table categorias {
+  id integer [primary key, increment]
+  nombre varchar(150)
+  fecha_registro timestamp
+}
+
+Table docentes {
+  id integer [primary key, increment]
+  nombres varchar(150)
+  apellidos varchar(150)
+  especialidad varchar(150)
+  fecha_registro timestamp
+}
+
+Table cursos {
+  id integer [primary key, increment]
+  categoria_id integer
+  docente_id integer
+  codigo varchar(20)
+  nombre varchar(150)
+  descripcion varchar(255)
+  costo decimal(6,2)
+  fecha_inicio date
+  fecha_fin date
+  fecha_registro timestamp
+}
+
+Table alumnos {
+  id integer [primary key, increment]
+  nombres varchar(150)
+  apellidos varchar(150)
+  email varchar(150)
+  fecha_registro timestamp
+}
+
+Table matriculas {
+  id integer [primary key, increment]
+  curso_id integer
+  alumno_id integer
+  costo decimal(6,2)
+  pagado char(1)
+  fecha_registro timestamp
+}
+
+// Relación: uno a muchos
+Ref: cursos.categoria_id > categorias.id
+Ref: cursos.docente_id > docentes.id
+Ref: matriculas.curso_id > cursos.id
+Ref: matriculas.alumno_id > alumnos.id
