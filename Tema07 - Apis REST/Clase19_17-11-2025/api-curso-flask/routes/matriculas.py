@@ -74,7 +74,7 @@ def matricula_editar(curso_id, alumno_id):
 
 @matricula_router.route("/matriculas/<int:curso_id>/<int:alumno_id>", methods=["DELETE"])
 def matricula_eliminar(curso_id, alumno_id):
-    matricula = Matricula.query.filter_by(curso_id=curso, alumno_id=alumno).first()
+    matricula = Matricula.query.filter_by(curso_id=curso_id, alumno_id=alumno_id).first()
     if matricula:
         db.session.delete(matricula)
         db.session.commit()
