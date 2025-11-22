@@ -1,6 +1,6 @@
 flask==3.1.2
 flask-sqlalchemy==3.1.1
 flask-migrate==4.1.0
-flask-restful
+flask-restful==0.3.10
 psycopg2-binary==2.9.11
 python-dotenv==1.2.1
