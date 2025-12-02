@@ -1,0 +1,18 @@
+Table agendas {
+  id integer [primary key, increment]
+  cliente varchar(150)
+  medio varchar(25)
+  fecha_agenda datetime
+  fecha_registro timestamp
+}
+
+Table provedores {
+  id integer [primary key, increment]
+  nombre varchar(100)
+  servicio varchar(100)
+  direccion varchar(150)
+  contacto_nombre varchar(150)
+  contacto_telefono varchar(25)
+  contacto_cargo varchar(45)
+  fecha_registro timestamp
+}

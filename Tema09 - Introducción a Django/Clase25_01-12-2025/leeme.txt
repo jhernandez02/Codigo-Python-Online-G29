@@ -1,0 +1,55 @@
+1. Crear el entorno virtual
+python -m venv .venv
+
+2. Activar el entorno virtual
+.venv\Scripts\activate
+
+3. Instalar los paquetes
+pip install -r requirements.txt
+
+4. Crear la carpeta web-django y luego crear el proyecto
+django-admin startproject website web-django
+
+5. Desde consola ingresar a la carpeta del proyecto:
+cd web-django
+
+6. Levantar el servidor
+python manage.py runserver
+
+7. Ejecutar las migraciones
+python manage.py migrate
+
+8. Crear un usuario administrador
+python manage.py createsuperuser
+
+9. Crear la aplicación:
+python manage.py startapp autos
+python manage.py startapp intranet
+
+10. Registrar la aplicación en el archivo settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'intranet',
+]
+
+11. Definir los modelos en el archivo intranet/models.py
+
+12. Generar las migraciones y luego ejecutarlas
+python manage.py makemigrations
+python manage.py migrate
+
+13. Registrar los modelos en el archivo intranet/admin.py
+
+from django.contrib import admin
+from .models import Agenda, Proveedor
+
+# Register your models here.
+admin.site.register(Agenda)
+admin.site.register(Proveedor)
+
