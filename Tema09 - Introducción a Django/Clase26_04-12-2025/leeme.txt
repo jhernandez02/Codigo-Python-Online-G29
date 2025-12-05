@@ -1,0 +1,35 @@
+1. Crear el entorno virtual
+python -m venv .venv
+
+2. Activar el entorno virtual
+.venv\Scripts\activate
+
+3. Instalar los paquetes
+pip install -r requirements.txt
+
+4. Desde consola ingresar a la carpeta del proyecto:
+cd web-django
+
+5. Levantar el servidor
+python manage.py runserver
+
+6. Actualizar settings.py para mostrar el admin en español:
+
+LANGUAGE_CODE = 'es'
+
+7. Instalar un nuevo tema para el admin
+pip install django-jazzmin
+
+8. Registar jazzmin en el archivo settings.py
+
+INSTALLED_APPS = [
+    'jazzmin',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'intranet',
+]
+
