@@ -1,0 +1,14 @@
+1. Crear el entorno virtual
+python -m venv .venv
+
+2. Activar el entorno virtual
+.venv\Scripts\activate
+
+3. Instalar los paquetes
+pip install -r requirements.txt
+
+4. Desde consola ingresar a la carpeta del proyecto:
+cd web-django
+
+5. Levantar el servidor
+python manage.py runserver

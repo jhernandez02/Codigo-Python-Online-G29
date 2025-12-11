@@ -1,0 +1,43 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Crear el proyecto en django
+django-admin startproject app ../api-biblioteca-django
+
+# Crea el archivo .env, en la raíz del proyecto, con el siguiente contenido:
+PGHOST='tu-host'
+PGDATABASE='bibliotecadb'
+PGUSER='neondb_owner'
+PGPASSWORD='tu_password'
+PGPORT=5432
+
+# Ejecutar las migraciones por defecto
+python manage.py migrate
+
+# Crear el usuario administrador (admin:123456)
+python manage.py createsuperuser
+
+# Crear la aplicación biblioteca
+python manage.py startapp biblioteca
+
+# Registrar la aplicación en el archivo settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'biblioteca',
+]
+
+# Definir los modelos, generar y ejecutar las migraciones
+python manage.py makemigrations
+python manage.py migrate
