@@ -1,0 +1,15 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Levantar el servidor de desarrollo
+python manage.py runserver
+
+# Definir los modelos, generar y ejecutar las migraciones
+python manage.py makemigrations
+python manage.py migrate
