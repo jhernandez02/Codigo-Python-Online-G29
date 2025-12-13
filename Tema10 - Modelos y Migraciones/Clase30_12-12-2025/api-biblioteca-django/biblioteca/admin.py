@@ -37,6 +37,25 @@ class PrestamoLibroInline(admin.TabularInline):
                 # Personalizamos la consulta para obtener solos los libros disponibles
                 kwargs["queryset"] = Libro.objects.filter(disponible='1')
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    
+    # Hacer campos solo lectura al editar
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # obj existe => estamos editando un préstamo existente
+            # Todos los campos se vuelven readonly
+            return [field.name for field in self.model._meta.fields]
+        return []  # si estamos creando, no hay campos readonly
+
+    # Bloquear agregar nuevas filas al editar
+    def has_add_permission(self, request, obj=None):
+        if obj:  # editando
+            return False
+        return True  # al crear, permitir agregar
+
+    # Bloquear eliminar filas al editar
+    def has_delete_permission(self, request, obj=None):
+        if obj:  # editando
+            return False
+        return True  # al crear, permitir eliminar
 
 class PrestamoAdmin(admin.ModelAdmin):
     # Mostramos el campo nombres de usuario
@@ -48,8 +67,22 @@ class PrestamoAdmin(admin.ModelAdmin):
     # Añadimos el detalle como un inline
     inlines = [PrestamoLibroInline]
 
-    # 1. save_model guarda el objeto principal en la base de datos
+    # Retorna los campos que solo son de lectura
+    def get_readonly_fields(self, request, obj=None):
+        '''
+        Devuelve los campos de solo lectura si es add o change
+        obj = None -> estamos creando
+        obj!= None -> estamos editando
+        '''
+        val_readonly_fields = self.readonly_fields
+        if obj is None: # Estamos creando un registro
+            return ['fecha_devolucion'] # Campos deshabilitados al crear
+        return ['fecha_registro'] # Campos deshabilitados al editar
+
+    # Paso 1. save_model: guarda el objeto principal en la base de datos
+    #                     se ejecuta antes de save_related
     def save_model(self, request, obj, form, change):
+         # Llamamos al método original para que haga el guardado
         super().save_model(request, obj, form, change)
 
         if obj.fecha_devolucion:
@@ -58,8 +91,10 @@ class PrestamoAdmin(admin.ModelAdmin):
                 libro.disponible = '1'
                 libro.save()
     
-    # 2. save_related guarda los objetos relaciones: inlines
+    # Paso 2. save_related: guarda los objetos relaciones: inlines
+    #                       se ejecuta despues de save_model
     def save_related(self, request, form, formsets, change):
+        # Llamamos al método original para que haga el guardado
         super().save_related(request, form, formsets, change)
 
         prestamo = form.instance

@@ -44,3 +44,5 @@ class PrestamoLibro(models.Model):
     prestamo = models.ForeignKey(Prestamo, on_delete=models.RESTRICT, related_name='detalles')
     libro = models.ForeignKey(Libro, on_delete=models.RESTRICT)
 
+    def __str__(self):
+        return 'Id: '+str(self.id)
