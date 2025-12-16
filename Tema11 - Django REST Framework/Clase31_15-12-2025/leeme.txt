@@ -1,0 +1,52 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Crear la carpeta api-serie-drf, y crear el proyecto en django
+django-admin startproject app api-serie-drf
+
+# Desde consola ingresar a la carpeta del proyecto:
+cd api-serie-drf
+
+# Ejecutar las migragraciones por defecto
+python manage.py migrate
+
+# Crear el usuario administrador (admin:123456)
+python manage.py createsuperuser
+
+# Crea la aplicación serie
+python manage.py startapp serie
+
+# Registrar DRF y la aplicación en el archivo settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework'
+    'serie'
+]
+
+# Definir los modelos, generar y ejecutar las migraciones
+python manage.py makemigrations
+python manage.py migrate
+
+# Registar los modelos en el archivo series/admin.py
+
+from django.contrib import admin
+from .models import Categoria, Serie
+
+# Register your models here.
+admin.site.register(Categoria)
+admin.site.register(Serie)
+
+# Levantar el servidor
+python manage.py runserver

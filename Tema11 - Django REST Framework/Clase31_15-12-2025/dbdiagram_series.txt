@@ -1,0 +1,26 @@
+Table categorias {
+  id integer [primary key, increment]
+  nombre varchar(150)
+  fecha_registro timestamp
+}
+
+Table series {
+  id integer [primary key, increment]
+  categoria_id integer
+  nombre varchar(150)
+  fecha_lanzamiento date(150)
+  puntaje integer
+  fecha_registro timestamp
+}
+
+Table users {
+  id integer [primary key, increment]
+  username varchar(150)
+  password varchar(255)
+}
+
+Table favoritos {
+  usuario_id integer
+  serie_id integer
+  fecha_registro timestamp
+}
