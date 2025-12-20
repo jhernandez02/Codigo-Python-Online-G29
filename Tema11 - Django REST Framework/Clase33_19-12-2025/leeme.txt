@@ -1,0 +1,76 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Desde consola ingresar a la carpeta del proyecto:
+cd api-serie-drf
+
+# Registrar CORS en el archivo settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'corsheaders',
+    'rest_framework'
+    'serie',
+]
+
+# Agregar el middleware de CORS en el archivo settings.py
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# Agregar al final del archivo settings.py
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
+
+# Levantar el servidor
+python manage.py runserver
+
+-----------------------------------------------------------------
+
+# Desde otra consola, crear el proyecto en React con vite
+npm create vite@latest app-series -- --template react
+
+# Desde consola, ingresar a la carpeta app-series, e instalar las dependecias:
+cd app-series
+npm install react-router-dom axios bootstrap react-bootstrap
+
+# Levantar la aplicación
+npm run dev
+
+# En el archivo main.jsx, reemplazar index.css por bootstrap.min.css
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+
+
