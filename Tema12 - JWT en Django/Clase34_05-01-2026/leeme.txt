@@ -1,0 +1,46 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Agregar al final del archivo requirements.txt
+djangorestframework-simplejwt
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Desde consola ingresar a la carpeta del proyecto:
+cd api-serie-drf
+
+# Importar timedelta en el archivo settings.py
+from datetime import timedelta
+
+# Agregar la configuración de REST_FRAMEWORK y SIMPLE_JWT en settings.py:
+
+REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES': (
+		'rest_framework_simplejwt.authentication.JWTAuthentication',
+	),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=240),
+}
+
+# Levantar el servidor
+python manage.py runserver
+
+# Crear la aplicación de autenticación:
+python manage.py startapp autenticacion
+
+-----------------------------------------------------------------
+
+# Desde consola, ingresar a la carpeta app-series, e instalar las dependecias:
+cd app-series
+
+# Levantar la aplicación
+npm run dev
