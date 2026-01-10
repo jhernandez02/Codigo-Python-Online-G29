@@ -1,0 +1,22 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Desde consola ingresar a la carpeta del proyecto:
+cd api-serie-drf
+
+# Levantar el servidor
+python manage.py runserver
+
+-----------------------------------------------------------------
+
+# Desde consola, ingresar a la carpeta app-series, e instalar las dependecias:
+cd app-series
+
+# Levantar la aplicación
+npm run dev

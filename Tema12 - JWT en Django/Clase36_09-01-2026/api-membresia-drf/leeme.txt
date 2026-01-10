@@ -1,0 +1,83 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Crear la carpeta api-membresia-drf y luego crear el proyecto
+django-admin startproject app api-membresia-drf
+
+# Desde consola ingresar a la carpeta del proyecto:
+cd api-membresia-drf
+
+# Ejecutar las migraciones
+python manage.py migrate
+
+# Crear un usuario administrador
+python manage.py createsuperuser
+
+# Crear la aplicación
+python manage.py startapp membresia
+
+# Importar timedelta y registrar las aplicaciones
+
+from datetime import timedelta
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'corsheaders',
+    'membresia',
+]
+
+MIDDLEWARE = [
+    ...
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    ...
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
+
+REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES': (
+		'rest_framework_simplejwt.authentication.JWTAuthentication',
+	),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=240),
+}
+
+# Definir los modelos en el archivo membresia/models.py
+
+# Generar las migraciones y luego ejecutarlas
+python manage.py makemigrations
+python manage.py migrate
+
+# Registrar los modelos en el archivo membresia/admin.py
+
+from django.contrib import admin
+from .models import Membresia, Suscripcion
+
+# Register your models here.
+admin.site.register(Membresia)
+admin.site.register(Suscripcion)
+
+# Levantar el servidor
+python manage.py runserver

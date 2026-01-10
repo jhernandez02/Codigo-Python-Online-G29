@@ -1,0 +1,27 @@
+Table membresias {
+  id integer [primary key, increment]
+  nombre varchar(150)
+  precio decimal(6,4)
+  fecha_registro timestamp
+}
+
+Table suscripciones {
+  id integer [primary key, increment]
+  membresia_id integer
+  usuario_id integer
+  fecha_inicio date
+  fecha_fin date
+  precio decimal(6,4)
+  activo char(1)
+  fecha_registro timestamp
+}
+
+Table users {
+  id integer [primary key, increment]
+  username varchar(150)
+  password varchar(255)
+}
+
+// Relación: muchos a muchos
+Ref: suscripciones.membresia_id > membresias.id
+Ref: suscripciones.usuario_id > users.id
