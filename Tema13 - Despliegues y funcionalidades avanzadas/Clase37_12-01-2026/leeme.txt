@@ -1,0 +1,14 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Desde consola ingresar a la carpeta del proyecto:
+cd api-membresia-drf
+
+# Levantar el servidor
+python manage.py runserver
