@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Suscripcion
 from .serializers import SuscripcionSerializer, BoletaSerializer
-from .permissions import IsNotSuperUser, BlockUpdate
+from .permissions import IsNotSuperUser, BlockDelete
 import os
 import requests
 
@@ -13,12 +13,12 @@ class SuscripcionViewSet(viewsets.ModelViewSet):
     serializer_class = SuscripcionSerializer
 
     def get_permissions(self):
-        if self.action=='list' or self.action=='destroy':
+        if self.action=='list':
             return [IsAdminUser()]
-        elif  self.action=='create':
+        elif  self.action=='create' or self.action=='update':
             return [IsNotSuperUser()]
-        elif self.action=='update':
-            return [BlockUpdate()]
+        elif self.action=='destroy':
+            return [BlockDelete()]
         else: #self.action=='retrieve'
             return [IsAuthenticated()]
 

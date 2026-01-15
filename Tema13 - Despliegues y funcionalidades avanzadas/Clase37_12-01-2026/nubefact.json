@@ -1,0 +1,31 @@
+{
+    "operacion": "generar_comprobante",
+    "tipo_de_comprobante": 2,
+    "serie": "BBB1",
+    "numero": 1,
+    "sunat_transaction": 1,
+    "cliente_tipo_de_documento": 1,
+    "cliente_numero_de_documento": "87654321",
+    "cliente_denominacion": "Jose Pinedo",
+    "cliente_direccion": "Lima",
+    "fecha_de_emision": "12-01-2026",
+    "moneda": 1,
+    "porcentaje_de_igv": 18.00,
+    "total_igv": 18.00,
+    "total_gravada": 100,
+    "total": 118.00,
+    "items": [
+        {
+            "unidad_de_medida": "NIU",
+            "descripcion": "Membresia Platinium - 1 año",
+            "cantidad": 1,
+            "valor_unitario": 100.00,
+            "precio_unitario": 118.00,
+            "subtotal": 100.00,
+            "tipo_de_igv": 1,
+            "igv": 18.00,
+            "total": 118.00,
+            "anticipo_regularizacion": false
+        }
+    ]
+}

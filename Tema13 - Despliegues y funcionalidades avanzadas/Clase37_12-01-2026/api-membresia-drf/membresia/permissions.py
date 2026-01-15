@@ -14,3 +14,10 @@ class BlockUpdate(BasePermission):
         if request.method in ['PUT','PATCH']:
             return False
         return True
+
+class BlockDelete(BasePermission):
+    def has_permission(self, request, view):
+        print(request.method)
+        if request.method in ['DELETE']:
+            return False
+        return True
