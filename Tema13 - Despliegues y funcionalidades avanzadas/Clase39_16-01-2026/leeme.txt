@@ -1,0 +1,32 @@
+# Crear el entorno virtual
+python -m venv .venv
+
+# Activar el entorno virtual
+.venv\Scripts\activate
+
+# Instalar los paquetes
+pip install -r requirements.txt
+
+# Desde consola ingresar a la carpeta del proyecto:
+cd api-membresia-drf
+
+# Levantar el servidor
+python manage.py runserver
+
+---------------------------------------------
+
+# Desde otra consola, crear un proyecto en React con Vite
+npm create vite@latest app-membresia-react -- --template react
+
+# Desde consola, ingresar a la carpeta app-membresia-react, e instalar las dependencias:
+cd app-membresia-react
+npm install react-router-dom axios bootstrap react-bootstrap sweetalert2 dotenv @paypal/react-paypal-js
+
+# En el archivo main.jsx, reemplazar index.css por bootstrap.min.css
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+# Reemplazar el contenido del archivo App.css por:
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+# Levantar el servidor
+npm run dev
