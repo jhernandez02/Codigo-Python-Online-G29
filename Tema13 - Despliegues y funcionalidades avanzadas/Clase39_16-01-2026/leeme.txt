@@ -1,3 +1,8 @@
+#### BACKEND ####
+
+# Desde consola ingresar a la carpeta del proyecto:
+cd api-membresia-drf
+
 # Crear el entorno virtual
 python -m venv .venv
 
@@ -7,8 +12,8 @@ python -m venv .venv
 # Instalar los paquetes
 pip install -r requirements.txt
 
-# Desde consola ingresar a la carpeta del proyecto:
-cd api-membresia-drf
+# Crear el usuario administrador (admin:123456)
+python manage.py createsuperuser
 
 # Levantar el servidor de desarrollo
 python manage.py runserver
@@ -17,5 +22,8 @@ python manage.py runserver
 python -m gunicorn app.wsgi:application
 
 ---------------------------------------------
+
+#### FRONTEND ####
+
 # Levantar el servidor
 npm run dev

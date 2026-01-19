@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Suscripcion
+from .models import Membresia, Suscripcion
+
+class MembresiaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Membresia
+        fields = ('__all__')
 
 class SuscripcionSerializer(serializers.ModelSerializer):
     membresia_nombre = serializers.CharField(source='membresia.nombre', read_only=True)

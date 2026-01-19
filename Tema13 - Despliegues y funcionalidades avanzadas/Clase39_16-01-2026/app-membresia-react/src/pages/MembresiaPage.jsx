@@ -1,13 +1,19 @@
+import { useState, useEffect } from "react";
+import { listarMembresiasService } from "../services/MembresiaServices";
 import { registrarSuscripcionService } from "../services/SuscripcionService";
 import PayPalButtonComponent from "../components/PaypalButtonComponent";
+import Spinner from "react-bootstrap/Spinner";
 import Swal from "sweetalert2";
 
 function MembresiaPage(){
-    const membresias = [
-        {id:1,nombre:"Clásica",precio:"50"},
-        {id:2,nombre:"Platinum",precio:"100"},
-        {id:3,nombre:"Golden",precio:"150"},
-    ];
+    const [membresias, setMembresias] = useState([]);
+    const [cargando, setCargando] = useState(true);
+
+    const listarMembresias = async () => {
+        const res = await listarMembresiasService();
+        setMembresias(res.data);
+        setCargando(false);
+    }
 
     const handleSuscribirse = async (membresia) => {
         const detalle = {
@@ -25,21 +31,32 @@ function MembresiaPage(){
         });
     };
 
+     useEffect(()=>{
+        listarMembresias();
+    }, []);
+
     return(
         <div className="container mt-3">
-            <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-                <h1 class="display-4 fw-normal text-body-emphasis">Membresías</h1>
-                <p class="fs-5 text-body-secondary">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p> </div>
-            <div className="mt-4 row row-cols-1 row-cols-md-3 mb-3 text-center">
-            {membresias.map((item)=>(
-                <div class="col" key={item.id}>
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">{item.nombre}</h4>
+            <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
+                <h1 className="display-4 fw-normal text-body-emphasis">Membresías</h1>
+                <p className="fs-5 text-body-secondary">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+            </div>
+            <div className="mt-4 row mb-3 text-center">
+            {cargando ? (
+                <div className="text-center">
+                    <Spinner animation="border" variant="primary" />
+                    <div>Cargando...</div>
+                </div>
+            ) : (
+                membresias.map((item)=>(
+                <div className="col" key={item.id}>
+                    <div className="card mb-4 rounded-3 shadow-sm">
+                        <div className="card-header py-3">
+                            <h4 className="my-0 fw-normal">{item.nombre}</h4>
                         </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">${item.precio}<small class="text-body-secondary fw-light">/mo</small></h1>
-                            <ul class="list-unstyled mt-3 mb-4">
+                        <div className="card-body">
+                            <h1 className="card-title pricing-card-title">${item.precio}<small className="text-body-secondary fw-light">/mo</small></h1>
+                            <ul className="list-unstyled mt-3 mb-4">
                                 <li>10 users included</li>
                                 <li>2 GB of storage</li>
                                 <li>Email support</li>
@@ -49,7 +66,8 @@ function MembresiaPage(){
                         </div>
                     </div>
                 </div>
-            ))}
+                ))
+            )}
             </div>
         </div>
     );

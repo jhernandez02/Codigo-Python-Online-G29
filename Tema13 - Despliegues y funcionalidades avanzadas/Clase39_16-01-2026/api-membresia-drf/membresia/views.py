@@ -2,12 +2,16 @@ from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Suscripcion
-from .serializers import SuscripcionSerializer, BoletaSerializer
+from .models import Membresia, Suscripcion
+from .serializers import MembresiaSerializer, SuscripcionSerializer, BoletaSerializer
 from .permissions import IsNotSuperUser, BlockDelete
 import os
 import requests
 from datetime import datetime
+
+class MembresiaListView(generics.ListAPIView):
+    serializer_class = MembresiaSerializer
+    queryset = Membresia.objects.all()
 
 def generar_boleta_electronica(boletaData):
     item = {
