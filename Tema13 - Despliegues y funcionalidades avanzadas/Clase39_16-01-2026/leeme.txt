@@ -26,4 +26,6 @@ python -m gunicorn app.wsgi:application
 #### FRONTEND ####
 
 # Levantar el servidor
+npm install
+cd app-membresia-react
 npm run dev
